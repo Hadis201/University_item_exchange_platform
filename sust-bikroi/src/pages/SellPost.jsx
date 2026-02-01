@@ -94,14 +94,14 @@ const SellPost = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (formData.images.length === 0) {
       showError('Please upload at least one image');
       return;
     }
-    
+
     setIsLoading(true);
-    
+
     try {
       const result = editId
         ? await productService.updateProduct(editId, formData)
@@ -120,21 +120,21 @@ const SellPost = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-background py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="bg-card rounded-lg shadow-md p-8 border border-border">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Sell Your Product</h1>
-            <p className="text-gray-600">Fill out the form below to list your product for sale</p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Sell Your Product</h1>
+            <p className="text-muted-foreground">Fill out the form below to list your product for sale</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Product Information */}
             <div className="space-y-6">
-              <h2 className="text-xl font-semibold text-gray-900 border-b pb-2">Product Information</h2>
-              
+              <h2 className="text-xl font-semibold text-foreground border-b border-border pb-2">Product Information</h2>
+
               <div>
-                <label htmlFor="productName" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="productName" className="block text-sm font-medium text-foreground mb-2">
                   Product Name *
                 </label>
                 <input
@@ -144,13 +144,13 @@ const SellPost = () => {
                   required
                   value={formData.productName}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                   placeholder="Enter product name"
                 />
               </div>
 
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="description" className="block text-sm font-medium text-foreground mb-2">
                   Description *
                 </label>
                 <textarea
@@ -160,14 +160,14 @@ const SellPost = () => {
                   rows={4}
                   value={formData.description}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                   placeholder="Describe your product in detail"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="price" className="block text-sm font-medium text-foreground mb-2">
                     Price (৳) *
                   </label>
                   <input
@@ -178,13 +178,13 @@ const SellPost = () => {
                     min="0"
                     value={formData.price}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                     placeholder="Enter price"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="category" className="block text-sm font-medium text-foreground mb-2">
                     Category *
                   </label>
                   <select
@@ -193,7 +193,7 @@ const SellPost = () => {
                     required
                     value={formData.category}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                   >
                     <option value="">Select category</option>
                     {categories.map((category) => (
@@ -205,7 +205,7 @@ const SellPost = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="condition" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="condition" className="block text-sm font-medium text-foreground mb-2">
                     Condition *
                   </label>
                   <select
@@ -214,7 +214,7 @@ const SellPost = () => {
                     required
                     value={formData.condition}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                   >
                     <option value="">Select condition</option>
                     {conditions.map((condition) => (
@@ -224,7 +224,7 @@ const SellPost = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="location" className="block text-sm font-medium text-foreground mb-2">
                     Location *
                   </label>
                   <input
@@ -234,7 +234,7 @@ const SellPost = () => {
                     required
                     value={formData.location}
                     onChange={handleChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                     placeholder="e.g., SUST Campus, Sylhet"
                   />
                 </div>
@@ -244,10 +244,10 @@ const SellPost = () => {
 
             {/* Image Upload */}
             <div className="space-y-6">
-              <h2 className="text-xl font-semibold text-gray-900 border-b pb-2">Product Images</h2>
-              
+              <h2 className="text-xl font-semibold text-foreground border-b border-border pb-2">Product Images</h2>
+
               <div>
-                <label htmlFor="images" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="images" className="block text-sm font-medium text-foreground mb-2">
                   Upload Images (Max 5 images)
                 </label>
                 <input
@@ -256,9 +256,9 @@ const SellPost = () => {
                   multiple
                   accept="image/*"
                   onChange={handleImageUpload}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                 />
-                <p className="text-sm text-gray-500 mt-1">Upload clear images of your product</p>
+                <p className="text-sm text-muted-foreground mt-1">Upload clear images of your product</p>
               </div>
 
               {/* Image Preview */}
@@ -274,7 +274,7 @@ const SellPost = () => {
                       <button
                         type="button"
                         onClick={() => removeImage(index)}
-                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600"
+                        className="absolute -top-2 -right-2 bg-destructive text-destructive-foreground rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-destructive/90"
                       >
                         ×
                       </button>
@@ -291,13 +291,13 @@ const SellPost = () => {
                   type="checkbox"
                   id="terms"
                   required
-                  className="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                  className="mt-1 h-4 w-4 text-primary focus:ring-primary border-border bg-background rounded"
                 />
-                <label htmlFor="terms" className="ml-2 text-sm text-gray-700">
+                <label htmlFor="terms" className="ml-2 text-sm text-foreground">
                   I agree to the{' '}
-                  <a href="#" className="text-green-600 hover:text-green-500">Terms of Service</a>{' '}
+                  <a href="#" className="text-primary hover:text-primary/90">Terms of Service</a>{' '}
                   and{' '}
-                  <a href="#" className="text-green-600 hover:text-green-500">Privacy Policy</a>.
+                  <a href="#" className="text-primary hover:text-primary/90">Privacy Policy</a>.
                   I confirm that the information provided is accurate and I own this product.
                 </label>
               </div>
@@ -306,14 +306,14 @@ const SellPost = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? 'Posting...' : 'Post Product'}
                 </button>
                 <button
                   type="button"
                   onClick={() => navigate('/')}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                  className="px-6 py-3 border border-input text-foreground rounded-lg font-semibold hover:bg-muted focus:outline-none focus:ring-2 focus:ring-muted focus:ring-offset-2"
                 >
                   Cancel
                 </button>
@@ -327,4 +327,3 @@ const SellPost = () => {
 };
 
 export default SellPost;
-

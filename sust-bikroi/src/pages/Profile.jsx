@@ -118,21 +118,20 @@ const Profile = () => {
   const TabButton = ({ tabName, currentTab, setTab, children }) => (
     <button
       onClick={() => setTab(tabName)}
-      className={`py-4 px-1 border-b-2 font-semibold text-sm transition-all duration-300 ${
-        currentTab === tabName
-          ? 'border-green-500 text-green-600'
-          : 'border-transparent text-gray-500 hover:text-gray-800 hover:border-gray-300'
-      }`}
+      className={`py-4 px-1 border-b-2 font-semibold text-sm transition-all duration-300 ${currentTab === tabName
+          ? 'border-primary text-primary'
+          : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border'
+        }`}
     >
       {children}
     </button>
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-background py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="bg-white rounded-2xl shadow-lg p-8 mb-8 animate-fade-in-down">
+        <div className="bg-card rounded-2xl shadow-lg p-8 mb-8 animate-fade-in-down border border-border">
           <div className="flex items-center space-x-6">
             <div className="w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-md">
               <span className="text-white font-bold text-4xl">
@@ -140,16 +139,16 @@ const Profile = () => {
               </span>
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{user?.fullName}</h1>
-              <p className="text-gray-600 mt-1">{user?.email}</p>
-              <p className="text-sm text-gray-500 mt-1">Student ID: {user?.studentId}</p>
+              <h1 className="text-3xl font-bold text-foreground">{user?.fullName}</h1>
+              <p className="text-muted-foreground mt-1">{user?.email}</p>
+              <p className="text-sm text-muted-foreground mt-1">Student ID: {user?.studentId}</p>
             </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-2xl shadow-lg animate-fade-in-up">
-          <div className="border-b border-gray-200">
+        <div className="bg-card rounded-2xl shadow-lg animate-fade-in-up border border-border">
+          <div className="border-b border-border">
             <nav className="flex space-x-8 px-8">
               <TabButton tabName="profile" currentTab={activeTab} setTab={setActiveTab}>Profile Settings</TabButton>
               <TabButton tabName="products" currentTab={activeTab} setTab={setActiveTab}>My Products ({myProducts.length})</TabButton>
@@ -160,8 +159,8 @@ const Profile = () => {
           <div className="p-8">
             {activeTab === 'profile' && (
               <form onSubmit={handleProfileUpdate} className="space-y-6 max-w-lg mx-auto">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Update Your Profile</h2>
-                
+                <h2 className="text-2xl font-bold text-foreground mb-6">Update Your Profile</h2>
+
                 <InputField label="Full Name" id="fullName" value={profileData.fullName} onChange={(e) => setProfileData({ ...profileData, fullName: e.target.value })} />
                 <InputField label="Email Address" id="email" type="email" value={profileData.email} onChange={(e) => setProfileData({ ...profileData, email: e.target.value })} />
                 <InputField label="Phone Number" id="phoneNumber" type="tel" value={profileData.phoneNumber} onChange={(e) => setProfileData({ ...profileData, phoneNumber: e.target.value })} />
@@ -179,7 +178,7 @@ const Profile = () => {
 
             {activeTab === 'security' && (
               <form onSubmit={handlePasswordChange} className="space-y-6 max-w-lg mx-auto">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Change Password</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-6">Change Password</h2>
                 <InputField label="Current Password" id="oldPassword" type="password" value={passwordData.oldPassword} onChange={(e) => setPasswordData({ ...passwordData, oldPassword: e.target.value })} />
                 <InputField label="New Password" id="newPassword" type="password" value={passwordData.newPassword} onChange={(e) => setPasswordData({ ...passwordData, newPassword: e.target.value })} />
                 <button
@@ -195,27 +194,27 @@ const Profile = () => {
             {activeTab === 'products' && (
               <div>
                 <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-2xl font-bold text-gray-900">My Products</h2>
+                  <h2 className="text-2xl font-bold text-foreground">My Products</h2>
                   <Link
                     to="/sell"
-                    className="bg-green-600 text-white px-5 py-2.5 rounded-full font-semibold hover:bg-green-700 transition-colors"
+                    className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-colors"
                   >
                     + Add New Product
                   </Link>
                 </div>
 
                 {productsLoading ? <LoadingSpinner text="Loading your products..." /> : myProducts.length === 0 ? (
-                  <div className="text-center py-16 bg-gray-50 rounded-xl">
-                    <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="text-center py-16 bg-muted/20 rounded-xl">
+                    <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
+                      <svg className="w-12 h-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">You haven't listed any products yet.</h3>
-                    <p className="text-gray-500 mb-6">Ready to sell? It's quick and easy.</p>
+                    <h3 className="text-xl font-semibold text-foreground mb-2">You haven't listed any products yet.</h3>
+                    <p className="text-muted-foreground mb-6">Ready to sell? It's quick and easy.</p>
                     <Link
                       to="/sell"
-                      className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                      className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                     >
                       List Your First Product
                     </Link>
@@ -223,7 +222,7 @@ const Profile = () => {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {myProducts.map((product) => (
-                      <div key={product._id} className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+                      <div key={product._id} className="bg-card border border-border rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden">
                         <Link to={`/product/${product._id}`}>
                           <img
                             src={product.productImage?.[0] || '/api/placeholder/300/200'}
@@ -232,22 +231,22 @@ const Profile = () => {
                           />
                         </Link>
                         <div className="p-4">
-                          <h3 className="font-bold text-lg text-gray-800 mb-2 truncate">{product.productName}</h3>
-                          <p className="text-green-600 font-extrabold text-xl mb-3">৳{product.price}</p>
-                          <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                          <h3 className="font-bold text-lg text-foreground mb-2 truncate">{product.productName}</h3>
+                          <p className="text-primary font-extrabold text-xl mb-3">৳{product.price}</p>
+                          <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
                             <span>{product.category}</span>
                             <span className="capitalize">{product.condition}</span>
                           </div>
                           <div className="flex space-x-3">
                             <Link
                               to={`/product/${product._id}`}
-                              className="flex-1 text-center bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+                              className="flex-1 text-center bg-primary/10 text-primary py-2 px-4 rounded-lg text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"
                             >
                               View
                             </Link>
                             <button
                               onClick={() => handleDeleteProduct(product._id)}
-                              className="flex-1 bg-red-600 text-white py-2 px-4 rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors"
+                              className="flex-1 bg-destructive text-destructive-foreground py-2 px-4 rounded-lg text-sm font-semibold hover:bg-destructive/90 transition-colors"
                             >
                               Delete
                             </button>
@@ -268,7 +267,7 @@ const Profile = () => {
 
 const InputField = ({ label, id, type = 'text', value, onChange }) => (
   <div>
-    <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
+    <label htmlFor={id} className="block text-sm font-medium text-foreground mb-2">
       {label}
     </label>
     <input
@@ -276,7 +275,7 @@ const InputField = ({ label, id, type = 'text', value, onChange }) => (
       id={id}
       value={value}
       onChange={onChange}
-      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all"
+      className="w-full px-4 py-3 border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-foreground"
       required
     />
   </div>

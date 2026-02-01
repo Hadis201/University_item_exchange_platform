@@ -21,7 +21,7 @@ const generateAccessToken = async (userId) => {
       return { accessToken, refreshToken }
    }
    catch (err) {
-      throw new ApiError(500,{}, "something went wrong in token generation")
+      throw new ApiError(500, "something went wrong in token generation")
    }
 }
 
@@ -29,7 +29,7 @@ const generateAccessToken = async (userId) => {
  const signUp = asyncHandler(async (req, res) => {
   const { fullName, email, userName, password, studentId, phoneNumber } = req.body;
 
-  if ([fullName, email, userName, password, studentId, phoneNumber].some((f) => !f?.trim())) {
+  if ([fullName, email, userName, password, studentId, phoneNumber].some((f) => !String(f).trim())) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -37,7 +37,7 @@ const generateAccessToken = async (userId) => {
     throw new ApiError(400, "Please use your valid student email (@student.sust.edu)");
   }
 
-  const existedUser = await User.findOne({ $or: [{ email }, { userName }] });
+  const existedUser = await User.findOne({ $or: [{ email }, { userName: userName.toLowerCase() }] });
   if (existedUser) {
     throw new ApiError(400, "User with this email or username already exists");
   }
@@ -138,7 +138,7 @@ export const verifySignUpOTP = asyncHandler(async (req, res) => {
 export const forgetPassword = asyncHandler(async (req, res) => {
   const { userName } = req.body;
 
-  const user = await User.findOne({ userName });
+  const user = await User.findOne({ userName: userName.toLowerCase() });
   if (!user) throw new ApiError(404, "User not found");
 
   const email = user.email;
@@ -200,7 +200,7 @@ const loginUser = asyncHandler(async (req, res) => {
       throw new ApiError(400, "username is required");
    }
 
-   const user = await User.findOne({ userName });
+   const user = await User.findOne({ userName: userName.toLowerCase() });
    if (!user) {
       throw new ApiError(404, "user not found");
    }

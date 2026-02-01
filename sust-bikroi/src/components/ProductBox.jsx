@@ -15,43 +15,51 @@ const ProductBox = ({ product }) => {
   const productId = product._id || product.id;
 
   return (
-    <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group">
-      <div className="aspect-w-16 aspect-h-9 overflow-hidden">
-        <img 
-          src={productImage} 
+    <div className="bg-card rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-border group flex flex-col h-full">
+      <div className="relative aspect-square overflow-hidden bg-muted/20 border-b border-border">
+        <img
+          src={productImage}
           alt={productName}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300 mix-blend-multiply dark:mix-blend-normal"
         />
-      </div>
-      
-      <div className="p-5">
-        <h3 className="text-lg font-bold text-gray-800 mb-2 line-clamp-2 h-14">
-          {productName}
-        </h3>
-        
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-2xl font-extrabold text-green-600">
-            ৳{productPrice}
-          </span>
-          <span className="text-sm font-medium text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full capitalize">
+        <div className="absolute top-3 right-3">
+          <span className="text-xs font-bold text-muted-foreground bg-background/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-sm border border-border uppercase tracking-wide">
             {productCondition || 'Used'}
           </span>
         </div>
-        
-        <div className="border-t border-gray-100 pt-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                <span className="text-sm font-bold text-gray-600">{ownerName.charAt(0).toUpperCase()}</span>
+      </div>
+
+      <div className="p-4 flex flex-col flex-grow">
+        <div className="mb-3 flex-grow">
+          <h3 className="text-foreground font-bold text-lg leading-tight line-clamp-2 mb-1 group-hover:text-primary transition-colors">
+            {productName}
+          </h3>
+          <p className="text-xs text-muted-foreground font-medium">{product.category || 'General'}</p>
+        </div>
+
+        <div className="mb-4">
+          <span className="text-xl font-extrabold text-primary block">
+            ৳{Number(productPrice).toLocaleString()}
+          </span>
+        </div>
+
+        <div className="pt-3 border-t border-border mt-auto">
+          <div className="flex justify-between items-center gap-2">
+            <div className="flex items-center space-x-2 min-w-0">
+              <div className="w-8 h-8 bg-muted rounded-full flex items-center justify-center flex-shrink-0 text-primary font-bold text-xs ring-2 ring-background">
+                {ownerName.charAt(0).toUpperCase()}
               </div>
-              <div>
-                <p className="text-gray-800 font-semibold text-sm">{ownerName}</p>
-                <p className="text-gray-500 text-xs">{ownerPhone}</p>
+              <div className="truncate">
+                <p className="text-foreground font-medium text-xs truncate">{ownerName}</p>
+                <p className="text-muted-foreground text-[10px] truncate">{ownerPhone}</p>
               </div>
             </div>
-            <button 
-              onClick={() => navigate(`/product/${productId}`)} 
-              className="bg-green-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-600 transition-colors text-sm whitespace-nowrap"
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/product/${productId}`);
+              }}
+              className="bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground px-3 py-1.5 rounded-lg font-semibold transition-all text-xs whitespace-nowrap active:scale-95"
             >
               View Details
             </button>

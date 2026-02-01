@@ -85,7 +85,97 @@ The SUST Item Exchange Platform is a full-stack web application that enables stu
 ## 📁 Project Structure
 
 ```
-University_item_exchange_platform/├── backend/                    # Backend API server│   ├── db/                    # Database configuration│   │   ├── index.js          # MongoDB connection│   │   └── name.js           # Database name config│   ├── public/               # Static files│   │   └── temp/            # Temporary upload storage│   ├── src/│   │   ├── controller/      # Route controllers│   │   │   ├── product.controller.js│   │   │   └── user.controller.js│   │   ├── middleware/      # Custom middleware│   │   │   ├── auth-middleware.js│   │   │   └── multermiddleware.js│   │   ├── model/          # Mongoose schemas│   │   │   ├── product.model.js│   │   │   └── user.model.js│   │   ├── router/         # API routes│   │   │   ├── product.router.js│   │   │   └── user.router.js│   │   ├── utils/          # Utility functions│   │   │   ├── ApiError.js│   │   │   ├── ApiResponse.js│   │   │   ├── asyncHandler.js│   │   │   └── cloudinary.js│   │   ├── app.js          # Express app configuration│   │   └── index.js        # Server entry point│   ├── .env                # Environment variables│   └── package.json        # Dependencies│└── sust-bikroi/            # Frontend React application    ├── public/             # Static assets    ├── src/    │   ├── assets/        # Images, icons    │   ├── components/    # Reusable components    │   │   ├── Footer.jsx    │   │   ├── Header.jsx    │   │   ├── LoadingSpinner.jsx    │   │   └── ProductBox.jsx    │   ├── context/       # React Context    │   │   └── AuthContext.jsx    │   ├── pages/         # Page components    │   │   ├── CategoryPage.jsx    │   │   ├── Home.jsx    │   │   ├── Login.jsx    │   │   ├── ProductDetail.jsx    │   │   ├── Products.jsx    │   │   ├── Profile.jsx    │   │   ├── SearchPage.jsx    │   │   ├── SellPost.jsx    │   │   └── Signup.jsx    │   ├── services/      # API services    │   │   ├── api.js    │   │   ├── authService.js    │   │   └── productService.js    │   ├── utils/         # Helper functions    │   │   └── notifications.js    │   ├── App.jsx        # Main App component    │   ├── Layout.jsx     # Layout wrapper    │   └── main.jsx       # Application entry point    ├── index.html    ├── vite.config.js     # Vite configuration    └── package.json       # Dependencies
+University_item_exchange_platform/
+├── backend/                    # Backend API server
+│   ├── db/                    # Database configuration
+│   │   ├── index.js          # MongoDB connection
+│   │   └── name.js           # Database name config
+│   ├── public/               # Static files
+│   │   └── temp/            # Temporary upload storage
+│   ├── src/
+│   │   ├── controller/      # Route controllers
+│   │   │   ├── product.controller.js
+│   │   │   └── user.controller.js
+│   │   ├── middleware/      # Custom middleware
+│   │   │   ├── auth-middleware.js
+│   │   │   └── multermiddleware.js
+│   │   ├── model/          # Mongoose schemas
+│   │   │   ├── product.model.js
+│   │   │   └── user.model.js
+│   │   ├── router/         # API routes
+│   │   │   ├── product.router.js
+│   │   │   └── user.router.js
+│   │   ├── utils/          # Utility functions
+│   │   │   ├── ApiError.js
+│   │   │   ├── ApiResponse.js
+│   │   │   ├── asyncHandler.js
+│   │   │   └── cloudinary.js
+│   │   ├── app.js          # Express app configuration
+│   │   └── index.js        # Server entry point
+│   ├── .env                # Environment variables
+│   └── package.json        # Dependencies
+├── sust-bikroi/            # Frontend React web application
+    ├── public/             # Static assets
+    ├── src/
+    │   ├── assets/        # Images, icons
+    │   ├── components/    # Reusable components
+    │   │   ├── Footer.jsx
+    │   │   ├── Header.jsx
+    │   │   ├── LoadingSpinner.jsx
+    │   │   └── ProductBox.jsx
+    │   ├── context/       # React Context
+    │   │   └── AuthContext.jsx
+    │   ├── pages/         # Page components
+    │   │   ├── CategoryPage.jsx
+    │   │   ├── Home.jsx
+    │   │   ├── Login.jsx
+    │   │   ├── ProductDetail.jsx
+    │   │   ├── Products.jsx
+    │   │   ├── Profile.jsx
+    │   │   ├── SearchPage.jsx
+    │   │   ├── SellPost.jsx
+    │   │   └── Signup.jsx
+    │   ├── services/      # API services
+    │   │   ├── api.js
+    │   │   ├── authService.js
+    │   │   └── productService.js
+    │   ├── utils/         # Helper functions
+    │   │   └── notifications.js
+    │   ├── App.jsx        # Main App component
+    │   ├── Layout.jsx     # Layout wrapper
+    │   └── main.jsx       # Application entry point
+    ├── index.html
+    ├── vite.config.js     # Vite configuration
+    └── package.json       # Dependencies
+└── sust-bikroi-mobile/     # Mobile React Native app (Expo)
+    ├── src/
+    │   ├── navigation/    # React Navigation
+    │   │   └── AppNavigator.js
+    │   ├── screens/       # App screens
+    │   │   ├── LoginScreen.js
+    │   │   ├── SignupScreen.js
+    │   │   ├── HomeScreen.js
+    │   │   ├── ProductsScreen.js
+    │   │   ├── ProductDetailScreen.js
+    │   │   ├── SellPostScreen.js
+    │   │   ├── SearchScreen.js
+    │   │   ├── CategoryScreen.js
+    │   │   ├── ProfileScreen.js
+    │   │   └── ChatScreen.js
+    │   ├── components/    # Reusable components
+    │   │   ├── ProductCard.js
+    │   │   └── LoadingSpinner.js
+    │   ├── services/      # API services
+    │   │   ├── api.js
+    │   │   ├── authService.js
+    │   │   ├── productService.js
+    │   │   ├── chatService.js
+    │   │   └── socket.js
+    │   └── context/       # Context providers
+    │       └── AuthContext.js
+    ├── App.js
+    ├── app.json           # Expo configuration
+    └── package.json
 ```
 
 ## 📦 Prerequisites
@@ -112,10 +202,22 @@ git clone https://github.com/Hadis201/University_item_exchange_platform.gitcd Un
 # Navigate to backend directorycd backend# Install dependenciesnpm install# Create the required directory for file uploadsmkdir -p public/temp
 ```
 
-### 3. Frontend Setup
+### 3. Frontend Web Setup
 
 ```bash
-# Navigate to frontend directory (from project root)cd sust-bikroi# Install dependenciesnpm install
+# Navigate to frontend directory (from project root)
+cd sust-bikroi
+# Install dependencies
+npm install
+```
+
+### 4. Mobile App Setup (Android)
+
+```bash
+# Navigate to mobile app directory (from project root)
+cd sust-bikroi-mobile
+# Install dependencies
+npm install
 ```
 
 ## ⚙️ Configuration
@@ -170,9 +272,50 @@ Open a new terminal:
 
 The frontend will start at `http://localhost:5173`
 
-#### 4. Access the Application
+#### 4. Access the Web Application
 
 Open your browser and navigate to: `http://localhost:5173`
+
+### Running the Mobile App (Android)
+
+#### 1. Configure Backend URL
+
+For the mobile app to connect to your backend, you need to update the API base URL in `/sust-bikroi-mobile/src/services/api.js`:
+
+- **Android Emulator**: The default `http://10.0.2.2:5000` is already configured
+- **Physical Device**: Find your computer's local IP and update to `http://192.168.x.x:5000`
+
+To find your local IP:
+```bash
+# On Linux/Mac
+ifconfig | grep "inet "
+# On Windows
+ipconfig
+```
+
+#### 2. Start Expo Dev Server
+
+Make sure the backend is running first, then:
+
+```bash
+# From the mobile app directory
+cd sust-bikroi-mobile
+npx expo start
+```
+
+#### 3. Run on Android
+
+You have two options:
+
+**Option A: Android Emulator** (requires Android Studio)
+- Press `a` in the Expo CLI to open in Android emulator
+
+**Option B: Physical Android Device** (easier)
+- Install [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) from Play Store
+- Scan the QR code shown in terminal with Expo Go app
+- Make sure your phone and computer are on the same WiFi network
+
+> **Note**: Both the web app and mobile app can run simultaneously and will share the same backend data!
 
 ## 🔌 API Documentation
 
@@ -321,7 +464,7 @@ For questions, suggestions, or support:
 -    Add real-time chat functionality
 -    Implement payment integration
 -    Add email notifications
--    Mobile app development
+-    ✅ Mobile app development (Android - Expo React Native)
 -    Advanced search filters
 -    User rating and review system
 -    Admin dashboard

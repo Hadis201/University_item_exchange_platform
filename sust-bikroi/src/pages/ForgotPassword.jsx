@@ -20,7 +20,7 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       const result = await authService.forgotPassword(formData);
       if (result.success) {
@@ -43,7 +43,7 @@ const ForgotPassword = () => {
       <div className="hidden lg:flex w-1/2 bg-gradient-to-tr from-green-500 to-emerald-600 items-center justify-center text-white p-12">
         <div className="max-w-md text-center">
           <Link to="/" className="inline-block mb-8 animate-fade-in-down">
-            <img src="/logo.jpg" alt="Logo" className="w-24 h-24 rounded-2xl mx-auto shadow-lg"/>
+            <img src="/logo.jpg" alt="Logo" className="w-24 h-24 rounded-2xl mx-auto shadow-lg" />
           </Link>
           <h1 className="text-4xl font-bold mb-4 animate-fade-in-up">Forgot Password?</h1>
           <p className="text-lg text-green-100 animate-fade-in-up animation-delay-200">
@@ -53,13 +53,13 @@ const ForgotPassword = () => {
       </div>
 
       {/* Right Pane (Forgot Password Form) */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 bg-gray-50">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 bg-background">
         <div className="w-full max-w-md">
           <div className="animate-fade-in-down">
-            <h2 className="text-3xl font-bold text-gray-800 text-center">
+            <h2 className="text-3xl font-bold text-foreground text-center">
               Reset Your Password
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
+            <p className="mt-2 text-center text-sm text-muted-foreground">
               Enter your username to receive password reset instructions
             </p>
           </div>
@@ -68,7 +68,7 @@ const ForgotPassword = () => {
             <div className="rounded-md shadow-sm">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <svg className="h-5 w-5 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
                 </div>
@@ -80,7 +80,7 @@ const ForgotPassword = () => {
                   required
                   value={formData.userName}
                   onChange={handleChange}
-                  className="appearance-none rounded-md relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-md relative block w-full px-3 py-3 pl-10 border border-input bg-background placeholder-muted-foreground text-foreground focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Username"
                 />
               </div>
@@ -90,7 +90,7 @@ const ForgotPassword = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
               >
                 {isLoading ? (
                   <>
@@ -107,7 +107,7 @@ const ForgotPassword = () => {
             <div className="text-center text-sm">
               <Link
                 to="/login"
-                className="font-medium text-green-600 hover:text-green-500 transition-colors"
+                className="font-medium text-primary hover:text-primary/80 transition-colors"
               >
                 Back to login
               </Link>

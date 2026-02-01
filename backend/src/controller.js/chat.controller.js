@@ -8,10 +8,10 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 const pickPublicUserFields = (userDoc) =>
   userDoc
     ? {
-        _id: userDoc._id,
-        fullName: userDoc.fullName,
-        userName: userDoc.userName,
-      }
+      _id: userDoc._id,
+      fullName: userDoc.fullName,
+      userName: userDoc.userName,
+    }
     : null;
 
 // 1. Get Contact List (People I chatted with before)
@@ -19,7 +19,6 @@ const getContactList = asyncHandler(async (req, res) => {
   const myId = req.user._id;
 
   const chats = await Chat.find({ participants: myId })
-    .select("participants lastMessage updatedAt")
     .populate({
       path: "participants",
       select: "fullName userName",
@@ -33,12 +32,18 @@ const getContactList = asyncHandler(async (req, res) => {
       const otherUser = chat.participants.filter(Boolean)[0];
       if (!otherUser) return null;
 
+      // Calculate unread count
+      const unreadCount = chat.messages.filter(
+        (msg) => msg.senderId.toString() !== myId.toString() && !msg.read
+      ).length;
+
       return {
         _id: otherUser._id,
         fullName: otherUser.fullName,
         userName: otherUser.userName,
         lastMessage: chat.lastMessage || "No messages yet",
         lastMessageTime: chat.updatedAt,
+        unreadCount,
       };
     })
     .filter(Boolean);
@@ -84,4 +89,35 @@ const getChatHistory = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, chat, "Chat history fetched"));
 });
 
-export { getContactList, getChatHistory };
+// 3. Mark messages as read
+const markMessagesAsRead = asyncHandler(async (req, res) => {
+  const { friendId } = req.params;
+  const myId = req.user._id;
+
+  const chat = await Chat.findOne({
+    participants: { $all: [myId, friendId] },
+  });
+
+  if (!chat) {
+    throw new ApiError(404, "Chat not found");
+  }
+
+  // Update all messages sent by friend to read: true
+  let updated = false;
+  chat.messages.forEach((msg) => {
+    if (msg.senderId.toString() === friendId && !msg.read) {
+      msg.read = true;
+      updated = true;
+    }
+  });
+
+  if (updated) {
+    await chat.save();
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Messages marked as read"));
+});
+
+export { getContactList, getChatHistory, markMessagesAsRead };

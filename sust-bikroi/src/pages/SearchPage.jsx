@@ -43,13 +43,13 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
-              <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-600">
+              <Link to="/" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                 </svg>
@@ -58,10 +58,10 @@ const SearchPage = () => {
             </li>
             <li aria-current="page">
               <div className="flex items-center">
-                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
                 </svg>
-                <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2">Search Results</span>
+                <span className="ml-1 text-sm font-medium text-muted-foreground md:ml-2">Search Results</span>
               </div>
             </li>
           </ol>
@@ -69,31 +69,31 @@ const SearchPage = () => {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
             Search Results for "{query}"
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             {loading ? 'Searching...' : `Found ${searchResults.total} products`}
           </p>
         </div>
 
         {loading ? (
           <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         ) : searchResults.total === 0 ? (
           <div className="text-center py-20">
-            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-12 h-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
-            <p className="text-gray-500 mb-6">Try searching with different keywords or browse our categories.</p>
+            <h3 className="text-xl font-semibold text-foreground mb-2">No products found</h3>
+            <p className="text-muted-foreground mb-6">Try searching with different keywords or browse our categories.</p>
             <div className="flex justify-center gap-4">
               <Link
                 to="/"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 Browse All Products
               </Link>
@@ -115,7 +115,7 @@ const SearchPage = () => {
                 <button
                   disabled={page === 1}
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50"
+                  className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-muted"
                 >
                   Previous
                 </button>
@@ -123,7 +123,7 @@ const SearchPage = () => {
                   <button
                     key={p}
                     onClick={() => setPage(p)}
-                    className={`px-3 py-1 border rounded hover:bg-gray-50 ${p === page ? 'bg-green-600 text-white hover:bg-green-700' : ''}`}
+                    className={`px-3 py-1 border rounded hover:bg-muted ${p === page ? 'bg-primary text-primary-foreground hover:bg-primary/90' : ''}`}
                   >
                     {p}
                   </button>
@@ -131,7 +131,7 @@ const SearchPage = () => {
                 <button
                   disabled={page === searchResults.totalPages}
                   onClick={() => setPage((p) => Math.min(searchResults.totalPages, p + 1))}
-                  className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-gray-50"
+                  className="px-3 py-1 border rounded disabled:opacity-50 hover:bg-muted"
                 >
                   Next
                 </button>

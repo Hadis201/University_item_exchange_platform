@@ -23,12 +23,12 @@ export const authService = {
   login: async (credentials) => {
     try {
       const response = await api.post('/user/login', credentials);
-      
+
       // Store tokens and user data
       localStorage.setItem('accessToken', response.data.data.accessToken);
       localStorage.setItem('refreshToken', response.data.data.refreshToken);
       localStorage.setItem('user', JSON.stringify(response.data.data.user));
-      
+
       return {
         success: true,
         data: response.data.data,
@@ -46,12 +46,12 @@ export const authService = {
   logout: async () => {
     try {
       await api.post('/user/logout');
-      
+
       // Clear local storage
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('user');
-      
+
       return {
         success: true,
         message: 'Logged out successfully'
@@ -61,7 +61,7 @@ export const authService = {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       localStorage.removeItem('user');
-      
+
       return {
         success: true,
         message: 'Logged out successfully'
@@ -107,11 +107,11 @@ export const authService = {
   updateProfile: async (profileData) => {
     try {
       const response = await api.patch('/user/update-account', profileData);
-      
+
       // Update user in localStorage
       const updatedUser = response.data.data;
       localStorage.setItem('user', JSON.stringify(updatedUser));
-      
+
       return {
         success: true,
         data: updatedUser,

@@ -71,13 +71,13 @@ const CategoryPage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
-              <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-600">
+              <Link to="/" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                 </svg>
@@ -86,10 +86,10 @@ const CategoryPage = () => {
             </li>
             <li aria-current="page">
               <div className="flex items-center">
-                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
                 </svg>
-                <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2">{displayName}</span>
+                <span className="ml-1 text-sm font-medium text-muted-foreground md:ml-2">{displayName}</span>
               </div>
             </li>
           </ol>
@@ -97,32 +97,32 @@ const CategoryPage = () => {
 
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-foreground mb-2">
             {displayName} ({loading ? '...' : productsPage.total} items)
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground">
             Browse through {displayName.toLowerCase()} available for sale
           </p>
         </div>
 
         {loading ? (
           <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         ) : productsPage.total === 0 ? (
           <div className="text-center py-20">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found in {displayName}</h3>
-            <p className="text-gray-500 mb-6">We don't have listings under this category at the moment. You can list an item or browse other categories.</p>
+            <h3 className="text-xl font-semibold text-foreground mb-2">No products found in {displayName}</h3>
+            <p className="text-muted-foreground mb-6">We don't have listings under this category at the moment. You can list an item or browse other categories.</p>
             <div className="flex justify-center gap-4">
               <Link
                 to="/sell"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
                 List Your Product
               </Link>
               <Link
                 to="/"
-                className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
+                className="inline-flex items-center px-4 py-2 border border-input text-sm font-medium rounded-md text-foreground bg-card hover:bg-muted focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-muted"
               >
                 Browse Home
               </Link>
@@ -131,18 +131,18 @@ const CategoryPage = () => {
         ) : (
           <>
             {/* Filters and Sort */}
-            <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div className="bg-card rounded-lg shadow-sm p-6 mb-8 border border-border">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Sort */}
                 <div>
-                  <label htmlFor="sort" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="sort" className="block text-sm font-medium text-foreground mb-2">
                     Sort by
                   </label>
                   <select
                     id="sort"
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                   >
                     <option value="newest">Newest First</option>
                     <option value="price-low">Price: Low to High</option>
@@ -152,7 +152,7 @@ const CategoryPage = () => {
 
                 {/* Price Range */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Price Range (৳)
                   </label>
                   <div className="flex space-x-2">
@@ -161,14 +161,14 @@ const CategoryPage = () => {
                       placeholder="Min"
                       value={priceRange.min}
                       onChange={(e) => setPriceRange({ ...priceRange, min: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                     />
                     <input
                       type="number"
                       placeholder="Max"
                       value={priceRange.max}
                       onChange={(e) => setPriceRange({ ...priceRange, max: e.target.value })}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-foreground"
                     />
                   </div>
                 </div>
@@ -180,7 +180,7 @@ const CategoryPage = () => {
                       setPriceRange({ min: '', max: '' });
                       setSortBy('newest');
                     }}
-                    className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    className="w-full px-4 py-2 border border-input text-foreground rounded-md hover:bg-muted focus:outline-none focus:ring-2 focus:ring-muted focus:ring-offset-2"
                   >
                     Clear Filters
                   </button>
@@ -191,7 +191,7 @@ const CategoryPage = () => {
             {/* Products Grid or No-results message */}
             {sortedProducts.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {sortedProducts.map((product) => (
+                {sortedProducts.map((product) => (
                   <Link key={product._id} to={`/product/${product._id}`}>
                     <ProductBox product={product} />
                   </Link>
@@ -199,16 +199,16 @@ const CategoryPage = () => {
               </div>
             ) : (
               <div className="text-center py-12">
-                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-12 h-12 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No products found</h3>
-                <p className="text-gray-500 mb-4">Try adjusting your filters or check back later for new listings.</p>
+                <h3 className="text-lg font-medium text-foreground mb-2">No products found</h3>
+                <p className="text-muted-foreground mb-4">Try adjusting your filters or check back later for new listings.</p>
                 <Link
                   to="/sell"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-foreground bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                 >
                   List Your Product
                 </Link>
@@ -229,7 +229,7 @@ const CategoryPage = () => {
                   <button
                     key={p}
                     onClick={() => setPage(p)}
-                    className={`px-3 py-1 border rounded ${p === page ? 'bg-green-600 text-white' : ''}`}
+                    className={`px-3 py-1 border rounded ${p === page ? 'bg-primary text-primary-foreground' : 'text-foreground hover:bg-muted'}`}
                   >
                     {p}
                   </button>

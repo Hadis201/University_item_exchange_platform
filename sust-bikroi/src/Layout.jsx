@@ -7,9 +7,9 @@ import Footer from './components/Footer'
 function Layout() {
   return (
     <div className="min-h-screen flex flex-col">
-        <Header/>
-        <Outlet/>
-        <Footer/>
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
   )
 }

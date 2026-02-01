@@ -10,9 +10,9 @@ const LoadingSpinner = ({ size = 'md', text }) => {
 
   return (
     <div className="flex flex-col items-center justify-center py-12">
-      <div className={`animate-spin rounded-full border-4 border-gray-200 border-t-green-600 ${sizeClasses[size]}`}></div>
+      <div className={`animate-spin rounded-full border-4 border-muted border-t-primary ${sizeClasses[size]}`}></div>
       {text && (
-        <p className="mt-4 text-base text-gray-700">{text}</p>
+        <p className="mt-4 text-base text-muted-foreground">{text}</p>
       )}
     </div>
   );

@@ -57,7 +57,7 @@ const ProductDetail = () => {
     }
   };
 
-  const isOwner = isAuthenticated && user && product && product.owner._id === user._id;
+  const isOwner = isAuthenticated && user && product?.owner?._id === user._id;
 
   const handleContactSeller = () => {
     if (!isAuthenticated) {
@@ -78,18 +78,18 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h1>
-          <Link to="/" className="text-green-600 hover:text-green-700">
+          <h1 className="text-2xl font-bold text-foreground mb-4">Product Not Found</h1>
+          <Link to="/" className="text-primary hover:text-primary/90">
             Back to Home
           </Link>
         </div>
@@ -101,13 +101,13 @@ const ProductDetail = () => {
   const currentImage = productImages[currentImageIndex] || '/api/placeholder/500/400';
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <nav className="flex mb-8" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
-              <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-green-600">
+              <Link to="/" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary">
                 <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                 </svg>
@@ -116,20 +116,20 @@ const ProductDetail = () => {
             </li>
             <li>
               <div className="flex items-center">
-                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
                 </svg>
-                <Link to={`/category/${product.category}`} className="ml-1 text-sm font-medium text-gray-700 hover:text-green-600 md:ml-2">
+                <Link to={`/category/${product.category}`} className="ml-1 text-sm font-medium text-muted-foreground hover:text-primary md:ml-2">
                   {product.category}
                 </Link>
               </div>
             </li>
             <li aria-current="page">
               <div className="flex items-center">
-                <svg className="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-6 h-6 text-muted-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
                 </svg>
-                <span className="ml-1 text-sm font-medium text-gray-500 md:ml-2">{product.productName}</span>
+                <span className="ml-1 text-sm font-medium text-muted-foreground md:ml-2">{product.productName}</span>
               </div>
             </li>
           </ol>
@@ -145,16 +145,15 @@ const ProductDetail = () => {
                 className="w-full h-96 object-cover rounded-lg"
               />
             </div>
-            
+
             {productImages.length > 1 && (
               <div className="grid grid-cols-4 gap-2">
                 {productImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImageIndex(index)}
-                    className={`aspect-w-1 aspect-h-1 rounded-md overflow-hidden border-2 ${
-                      currentImageIndex === index ? 'border-green-500' : 'border-gray-300'
-                    }`}
+                    className={`aspect-w-1 aspect-h-1 rounded-md overflow-hidden border-2 ${currentImageIndex === index ? 'border-primary' : 'border-border'
+                      }`}
                   >
                     <img
                       src={image}
@@ -170,8 +169,8 @@ const ProductDetail = () => {
           {/* Product Details */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.productName}</h1>
-              <div className="flex items-center space-x-4 text-sm text-gray-500">
+              <h1 className="text-3xl font-bold text-foreground mb-2">{product.productName}</h1>
+              <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                 <span>Category: {product.category}</span>
                 <span>•</span>
                 <span className="capitalize">Condition: {product.condition}</span>
@@ -179,33 +178,33 @@ const ProductDetail = () => {
             </div>
 
             <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">
+              <div className="text-4xl font-bold text-primary mb-2">
                 ৳{product.price}
               </div>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Description</h3>
-              <p className="text-gray-700 leading-relaxed">{product.description}</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Description</h3>
+              <p className="text-muted-foreground leading-relaxed">{product.description}</p>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Location</h3>
-              <p className="text-gray-700">{product.location}</p>
+              <h3 className="text-lg font-semibold text-foreground mb-2">Location</h3>
+              <p className="text-muted-foreground">{product.location}</p>
             </div>
 
             {/* Seller Information */}
-            <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Seller Information</h3>
+            <div className="bg-card border border-border rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-foreground mb-2">Seller Information</h3>
               <div className="space-y-2">
-                <p><span className="font-medium">Name:</span> {product.owner?.fullName}</p>
+                <p><span className="font-medium">Name:</span> {product.owner?.fullName || "Unknown User"}</p>
                 {!isOwner && (
                   <>
-                    <p><span className="font-medium">Phone:</span> {product.owner?.phoneNumber}</p>
-                    <p><span className="font-medium">Email:</span> {product.owner?.email}</p>
+                    <p><span className="font-medium">Phone:</span> {product.owner?.phoneNumber || "N/A"}</p>
+                    <p><span className="font-medium">Email:</span> {product.owner?.email || "N/A"}</p>
                   </>
                 )}
-                <p><span className="font-medium">Student ID:</span> {product.owner?.studentId}</p>
+                <p><span className="font-medium">Student ID:</span> {product.owner?.studentId || "N/A"}</p>
               </div>
             </div>
 
@@ -214,7 +213,7 @@ const ProductDetail = () => {
               {!isOwner && (
                 <button
                   onClick={handleContactSeller}
-                  className="flex-1 bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                  className="flex-1 bg-primary text-primary-foreground py-3 px-6 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
                 >
                   Contact Seller
                 </button>

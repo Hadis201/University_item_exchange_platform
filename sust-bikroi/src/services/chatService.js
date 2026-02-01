@@ -32,5 +32,16 @@ export const chatService = {
       };
     }
   },
+
+  markAsRead: async (friendId) => {
+    try {
+      await api.put(`/chats/${friendId}/read`);
+      return { success: true };
+    } catch (error) {
+      // access error message if needed, but often silent failure is okay for read receipt
+      console.error("Failed to mark as read:", error);
+      return { success: false };
+    }
+  },
 };
 

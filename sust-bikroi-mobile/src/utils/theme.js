@@ -1,0 +1,126 @@
+export const theme = {
+    colors: {
+        primary: '#6750A4', // MD3 Purple 40
+        onPrimary: '#FFFFFF',
+        primaryContainer: '#EADDFF',
+        onPrimaryContainer: '#21005D',
+        secondary: '#625B71',
+        onSecondary: '#FFFFFF',
+        secondaryContainer: '#E8DEF8',
+        onSecondaryContainer: '#1D192B',
+        tertiary: '#7D5260',
+        onTertiary: '#FFFFFF',
+        tertiaryContainer: '#FFD8E4',
+        onTertiaryContainer: '#31111D',
+        error: '#B3261E',
+        onError: '#FFFFFF',
+        errorContainer: '#F9DEDC',
+        onErrorContainer: '#410E0B',
+        background: '#FEF7FF', // MD3 light background
+        onBackground: '#1D1B20',
+        surface: '#FEF7FF',
+        onSurface: '#1D1B20',
+        surfaceVariant: '#E7E0EC',
+        onSurfaceVariant: '#49454F',
+        outline: '#79747E',
+        outlineVariant: '#CAC4D0',
+        shadow: '#000000',
+        scrim: '#000000',
+        inverseSurface: '#322F35',
+        inverseOnSurface: '#F5EFF7',
+        inversePrimary: '#D0BCFF',
+    },
+    typography: {
+        displayLarge: {
+            fontSize: 57,
+            lineHeight: 64,
+            fontWeight: '400',
+        },
+        displayMedium: {
+            fontSize: 45,
+            lineHeight: 52,
+            fontWeight: '400',
+        },
+        displaySmall: {
+            fontSize: 36,
+            lineHeight: 44,
+            fontWeight: '400',
+        },
+        headlineLarge: {
+            fontSize: 32,
+            lineHeight: 40,
+            fontWeight: '400',
+        },
+        headlineMedium: {
+            fontSize: 28,
+            lineHeight: 36,
+            fontWeight: '400',
+        },
+        headlineSmall: {
+            fontSize: 24,
+            lineHeight: 32,
+            fontWeight: '400',
+        },
+        titleLarge: {
+            fontSize: 22,
+            lineHeight: 28,
+            fontWeight: '400',
+        },
+        titleMedium: {
+            fontSize: 16,
+            lineHeight: 24,
+            fontWeight: '500',
+        },
+        titleSmall: {
+            fontSize: 14,
+            lineHeight: 20,
+            fontWeight: '500',
+        },
+        labelLarge: {
+            fontSize: 14,
+            lineHeight: 20,
+            fontWeight: '500',
+        },
+        labelMedium: {
+            fontSize: 12,
+            lineHeight: 16,
+            fontWeight: '500',
+        },
+        labelSmall: {
+            fontSize: 11,
+            lineHeight: 16,
+            fontWeight: '500',
+        },
+        bodyLarge: {
+            fontSize: 16,
+            lineHeight: 24,
+            fontWeight: '400',
+        },
+        bodyMedium: {
+            fontSize: 14,
+            lineHeight: 20,
+            fontWeight: '400',
+        },
+        bodySmall: {
+            fontSize: 12,
+            lineHeight: 16,
+            fontWeight: '400',
+        },
+    },
+    elevation: {
+        level0: 0,
+        level1: 1,
+        level2: 3,
+        level3: 6,
+        level4: 8,
+        level5: 12,
+    },
+    shape: {
+        extraSmall: 4,
+        small: 8,
+        medium: 12,
+        large: 16,
+        extraLarge: 28,
+        full: 100,
+    }
+};
