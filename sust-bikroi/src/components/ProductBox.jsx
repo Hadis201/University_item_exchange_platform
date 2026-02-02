@@ -15,7 +15,7 @@ const ProductBox = ({ product }) => {
   const productId = product._id || product.id;
 
   return (
-    <div className="bg-card rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-border group flex flex-col h-full">
+    <div className="bg-card rounded-l shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-border group flex flex-col h-full">
       <div className="relative aspect-square overflow-hidden bg-muted/20 border-b border-border">
         <img
           src={productImage}
